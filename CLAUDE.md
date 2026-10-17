@@ -42,6 +42,14 @@ npm run lint    # eslint
 - force push (`git push --force`)
 - `.env` ファイルや認証情報のコミット
 
+### アクセス制限（技術的に強制）
+
+`.claude/settings.json` の PreToolUse hook により、`Read` / `Edit` / `Write` ツールは
+`/Users/obata.y/Desktop/就職関係/Web_qbclog/` 以下のパスのみ許可される。
+上位ディレクトリへのファイルアクセスはシステムレベルでブロックされる。
+
+Bash コマンドは hook の対象外のため、上位ディレクトリへの `ls` 等の Bash 操作も行わないこと。
+
 ## コーディング規約
 
 - コメントは「なぜそうするか (WHY)」が自明でない場合のみ書く

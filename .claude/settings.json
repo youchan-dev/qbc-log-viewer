@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(ls /Users/obata.y)",
+      "Bash(ls /Users/obata.y/)",
+      "Bash(ls /Users/obata.y/Desktop)",
+      "Bash(ls /Users/obata.y/Desktop/)",
+      "Bash(ls /Users/obata.y/Desktop/就職関係)",
+      "Bash(ls /Users/obata.y/Desktop/就職関係/)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_input.path // \"\"' | { read -r f; case \"$f\" in \"/Users/obata.y/Desktop/就職関係/Web_qbclog\"*|\"\") true ;; *) echo '{\"continue\":false,\"stopReason\":\"Access denied: path is outside the project directory\"}' ;; esac; }",
+            "statusMessage": "ファイルパスのアクセス制限を確認中..."
+          }
+        ]
+      }
+    ]
+  }
+}
